@@ -1,5 +1,5 @@
 body {
-  background-color: lavender;
+  background-color: lightsteelblue;
   font-family: 'Muli', sans-serif;
 }
 
@@ -7,6 +7,7 @@ body {
   margin-top: 36px;
   font-size: 36px;
   font-weight: bold;
+  color: black;
 }
 
 .email-input {
@@ -26,11 +27,11 @@ body {
   height: 96px;
   /*border-radius: 12px;*/
   background-color: white;
-  border: 4px solid lightgray;
+  border: 4px solid gray;
 }
 
 .bingo-card:hover {
-  background-color: lightgray;
+  background-color: gray;
 }
 
 .bingo-card > p {
@@ -39,5 +40,5 @@ body {
 }
 
 .selected {
-  /*background-color: yellow;*/
+  font-weight: bold;
 }

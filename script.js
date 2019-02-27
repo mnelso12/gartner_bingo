@@ -1,52 +1,125 @@
 $(document).ready(function(){
 
-  var bingo_data = [
-    {
-      "presenter_name": "Julia Bliss",
-      "article_title": "QA 101",
-      "state": "selected"
-    },
-    {
-      "presenter_name": "Dave Laskowski",
-      "article_title": "Dev 101",
-      "state": "selected"
-    },
-  ]
+  var grid_size = 5;
 
-  // should have a length of 25
-  var card_data = [
-    "Julia Bliss",
-    "Dev 101",
-    "Gartner 210923",
-    "Dave Laskowski",
-    "Gartner 123824",
-    "Gartner 103928",
-    "Gartner 192332"
-  ];
-
-  // populate bingo board with card card_data
-  for (var i=0; i<5; i++) {
-    var row = $("<tr>").addClass("bingo-row");
-    $("#bingo-board").append(row);
-    for (var j=0; j<5; j++) {
-      let card_data_index = i*5 + j;
-      var content = $("<p>").html(card_data[card_data_index]);
-      var cell = $("<td>").append(content).addClass("bingo-card");
-      row.append(cell);
-    }
+  function getSum(total, num) {
+    return total + num;
   }
 
-  $(".bingo-card").click(function(){
-    if ($(this).hasClass("selected")) {
-      $(this).removeClass("selected");
-      $(this).css("background-color", "white");
+  function hash_email(email, total_bingo_data) {
+    var ascii_digits = [];
+    for (var i=0; i<email.length; i++) {
+      let char = email[i];
+      ascii_digits.push(char.charCodeAt(0));
     }
-    else {
-      $(this).addClass("selected");
-      var cssHSL = "hsl(" + 360 * Math.random() + ',' +
-                 (25 + 70 * Math.random()) + '%,' +
-                 (85 + 10 * Math.random()) + '%)';
-      $(this).css("background-color", cssHSL);
+
+    // determine "random" values
+    let sum_ascii_digits = ascii_digits.reduce(getSum);
+    let offset1 = sum_ascii_digits%(grid_size*grid_size/2)+1;
+    let offset2 = sum_ascii_digits%grid_size+1;
+    let reverse1 = sum_ascii_digits%2;
+    let reverse2 = sum_ascii_digits%2+1;
+    let reverse3 = sum_ascii_digits%3; // WE NEED MORE SMALL PRIME NUMBERS!
+
+    // scramble 10 iterations
+    for (var i=0; i<1000; i++) {
+      total_bingo_data = scramble_array(total_bingo_data, sum_ascii_digits, offset1, offset2, reverse1, reverse2, reverse3);
     }
+    return total_bingo_data;
+  }
+
+  function scramble_array(arr, sum_ascii_digits, offset1, offset2, reverse1, reverse2, reverse3) {
+    // break into chunks
+    chunk1 = arr.slice(0, offset1);
+    chunk2 = arr.slice(offset1);
+
+    // do reverse
+    if (reverse1 == 0) {
+      chunk1 = chunk1.reverse();
+    }
+    if (reverse2 == 0) {
+      chunk2 = chunk2.reverse();
+    }
+    arr = chunk2.concat(chunk1);
+    if (reverse3 == 0) {
+      arr = arr.reverse();
+    }
+
+    chunk3 = arr.slice(0, offset2);
+    chunk4 = arr.slice(offset2);
+
+    // do reverse
+    if (reverse1 == 0) {
+      chunk3 = chunk3.reverse();
+    }
+    if (reverse2 == 0) {
+      chunk4 = chunk4.reverse();
+    }
+    arr = chunk4.concat(chunk3);
+    if (reverse3 == 0) {
+      arr = arr.reverse();
+    }
+
+    // remove unwanted indeces
+    var i = 0;
+    while (i<(arr.length-(grid_size*grid_size))) {
+      if (i%2 == 0) {
+        arr.splice(i, 1);
+      }
+      i++;
+    }
+
+    return arr;
+  }
+
+  $("#generate_bingo_board").click(function(){
+    // read bingo data from data.json
+    var total_bingo_data = [
+      "Dev 101",
+      "Dev 102",
+      "Dev 103",
+      "Dev 104",
+      "Dev 105"
+    ];
+    let email = $("#email_addr").val();
+    var card_data = hash_email(email, total_bingo_data);
+    populate_board(card_data);
   });
+
+  function populate_board(card_data) {
+    // populate bingo board with card card_data
+    $("#bingo-board").empty();
+    for (var i=0; i<grid_size; i++) {
+      var row = $("<tr>").addClass("bingo-row");
+      $("#bingo-board").append(row);
+      for (var j=0; j<grid_size; j++) {
+        let card_data_index = i*grid_size + j;
+        var content = $("<p>").html(card_data[card_data_index]);
+        var cell = $("<td>").append(content).addClass("bingo-card");
+        row.append(cell);
+      }
+    }
+
+    $(".bingo-card").click(function() {
+      if ($(this).hasClass("selected")) {
+        $(this).removeClass("selected");
+        $(this).css("background-color", "white");
+      }
+      else {
+        $(this).addClass("selected");
+        var cssHSL = "hsl(" + 360 * Math.random() + ',' +
+                   (25 + 70 * Math.random()) + '%,' +
+                   (85 + 10 * Math.random()) + '%)';
+        $(this).css("background-color", cssHSL);
+      }
+    });
+  }
+
+  $("#bingo-button").click(function(){
+    var email = "madelyn.nelson@protiviti.com;lily.carmody@protiviti.com";
+    var subject = 'BINGO! PSS Gartner Bingo LnL';
+    var emailBody = 'BINGO!!! My email: ' + $("#email_addr").val();
+    window.location = 'mailto:' + email + '?subject=' + subject + '&body=' +   emailBody;
+  });
+
 });
