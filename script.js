@@ -172,7 +172,7 @@ $(document).ready(function(){
 
   $("#bingo-button").click(function(){
     var email = "madelyn.nelson@protiviti.com;lily.carmody@protiviti.com";
-    var subject = 'BINGO! PSS Gartner Bingo L&L';
+    var subject = 'BINGO! PSS Gartner Bingo LnL';
     var emailBody = 'BINGO!!! My email: ' + $("#email_addr").val();
     window.location = 'mailto:' + email + '?subject=' + subject + '&body=' +   emailBody;
   });
