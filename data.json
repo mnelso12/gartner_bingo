@@ -1,38 +1,46 @@
 [
   {
-    "presenter_name": "Person 1",
-    "article_title": "Dev 100",
-    "position": "SM - PSS",
-    "keywords": "Topic 0"
+    "presenter_name": "Lily",
+    "presenter_name": "Josh",
+    "presenter_name": "Zaid",
+    "presenter_name": "Kyle",
+    "presenter_name": "Claire",
+    "presenter_name": "Julia",
+    "presenter_name": "Sam",
+    "presenter_name": "Heath",
+    "presenter_name": "Da'Veed",
+    "presenter_name": "Reeti",
   },
   {
-    "presenter_name": "Person 2",
-    "article_title": "Dev 101",
-    "position": "C1 - PSS",
-    "keywords": "Topic 1"
+    "keywords": "Enterprise Architecture Program",
+    "keywords": "Machine Learning",
+    "keywords": "Fraud Detection",
+    "keywords": "Penetration Testing",
+    "keywords": "DevOps",
+    "keywords": "DevSecOps",
+    "keywords": "Empathic Services in Banking",
   },
   {
-    "presenter_name": "Person 3",
-    "article_title": "Dev 102",
-    "position": "C2 - PSS",
-    "keywords": "Topic 2"
+    "college": "Purdue University",
+    "college": "University of Illinois",
+    "college": "Indiana University",
+    "college": "Stanford University",
+    "college": "University of Georgia",
+    "college": "Trine University",
   },
   {
-    "presenter_name": "Person 4",
-    "article_title": "Dev 103",
-    "position": "AD - PSS",
-    "keywords": "Topic 3"
+    "level": "C1",
+    "level": "C2",
+    "level": "S1",
+    "level": "M",
+    "level": "SM",
+    "level": "AD",
   },
   {
-    "presenter_name": "Person 5",
-    "article_title": "Dev 104",
-    "position": "D - PSS",
-    "keywords": "Topic 4"
-  },
-  {
-    "presenter_name": "Person 6",
-    "article_title": "Dev 105",
-    "position": "S1 - PSS",
-    "keywords": "Topic 5"
+    "solution": "TC - Core",
+    "solution": "TC - PSS",
+    "solution": "TC - S&P",
+    "solution": "IAFA - IA Process",
+    "solution": "IAFA - IT Audit",
   },
 ]
