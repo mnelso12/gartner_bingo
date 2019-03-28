@@ -138,7 +138,7 @@ $(document).ready(function(){
       else {
         $(this).addClass("selected");
         var cssHSL = "hsl(" + 360 * Math.random() + ',' +
-                   (25 + 70 * Math.random()) + '%,' +
+                   (85 + 10 * Math.random()) + '%,' +
                    (85 + 10 * Math.random()) + '%)';
         $(this).css("background-color", cssHSL);
       }
