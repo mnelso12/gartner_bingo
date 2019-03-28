@@ -1,3 +1,41 @@
+let initial_bingo_data = [
+	"Lily",
+	"Josh",
+	"Zaid",
+	"Kyle",
+	"Claire",
+	"Julia",
+	"Sam",
+	"Heath",
+	"Da'Veed",
+	"Reeti",
+	"Enterprise Architecture Program",
+	"Machine Learning",
+	"Fraud Detection",
+	"Penetration Testing",
+	"DevOps",
+	"DevSecOps",
+	"Empathic Services in Banking",
+	"Purdue University",
+	"University of Illinois",
+	"Indiana University",
+	"Stanford University",
+	"University of Georgia",
+	"Trine University",
+	"C1",
+	"C2",
+	"S1",
+	"M",
+	"SM",
+	"AD",
+	"TC - Core",
+	"TC - PSS",
+	"TC - S&P",
+	"IAFA - IA Process",
+	"IAFA - IT Audit",
+	];
+
+
 $(document).ready(function(){
 
   var grid_size = 5;
@@ -21,7 +59,7 @@ $(document).ready(function(){
     let reverse2 = sum_ascii_digits%2+1;
     let reverse3 = sum_ascii_digits%3; // WE NEED MORE SMALL PRIME NUMBERS!
 
-    // scramble 10 iterations
+    // scramble 1000 iterations
     for (var i=0; i<1000; i++) {
       total_bingo_data = scramble_array(total_bingo_data, sum_ascii_digits, offset1, offset2, reverse1, reverse2, reverse3);
     }
@@ -73,16 +111,8 @@ $(document).ready(function(){
   }
 
   $("#generate_bingo_board").click(function(){
-    // read bingo data from data.json
-    var total_bingo_data = [
-      "Dev 101",
-      "Dev 102",
-      "Dev 103",
-      "Dev 104",
-      "Dev 105"
-    ];
     let email = $("#email_addr").val();
-    var card_data = hash_email(email, total_bingo_data);
+    var card_data = hash_email(email, initial_bingo_data);
     populate_board(card_data);
   });
 
@@ -117,7 +147,7 @@ $(document).ready(function(){
 
   $("#bingo-button").click(function(){
     var email = "madelyn.nelson@protiviti.com;lily.carmody@protiviti.com";
-    var subject = 'BINGO! PSS Gartner Bingo LnL';
+    var subject = 'BINGO! PSS Gartner Bingo L&L';
     var emailBody = 'BINGO!!! My email: ' + $("#email_addr").val();
     window.location = 'mailto:' + email + '?subject=' + subject + '&body=' +   emailBody;
   });
