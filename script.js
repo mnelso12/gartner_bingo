@@ -1,5 +1,5 @@
 let initial_bingo_data = [
-	"Lily",
+	"Lauren",
 	"Josh",
 	"Alex",
 	"Zaid",
