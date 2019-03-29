@@ -149,7 +149,12 @@ $(document).ready(function(){
       $("#bingo-board").append(row);
       for (var j=0; j<grid_size; j++) {
         let card_data_index = i*grid_size + j;
-        var content = $("<p>").html(card_data[card_data_index]);
+        if ((i == Math.floor(grid_size/2)) && (j == Math.floor(grid_size/2))) {
+            var content = $("<p>").html("Free");
+        } else {
+            var content = $("<p>").html(card_data[card_data_index]);
+        }
+        // var content = $("<p>").html(card_data[card_data_index]);
         var cell = $("<td>").append(content).addClass("bingo-card");
         row.append(cell);
       }
